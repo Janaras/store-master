@@ -1,0 +1,44 @@
+CREATE TABLE  category(
+    id SERIAL PRIMARY KEY,
+    name       varchar(40)
+);
+
+CREATE TABLE  product(
+                        id SERIAL PRIMARY KEY,
+                        name varchar(40),
+                        categoryId integer
+);
+
+CREATE TABLE productDetails(
+                        id          SERIAL PRIMARY KEY,
+                        name        varchar(40),
+                        productId   integer,
+                        brand       varchar(40),
+                        price       DOUBLE PRECISION,
+                        description varchar(50),
+                        quantity    integer
+);
+INSERT INTO category (name) VALUES
+                                ('Клавиатуры'),
+                                ('Мыши'),
+                                ('Наушники');
+
+INSERT INTO product (name, categoryId) VALUES
+                                           ('Logitech G Pro X', 1),
+                                           ('Razer BlackWidow Elite', 1),
+                                           ('SteelSeries Rival 600', 2),
+                                           ('HyperX Cloud II', 3);
+INSERT INTO productDetails (name, productId, brand, price, description, quantity) VALUES
+                                                                                      ('Механическая клавиатура', 1, 'Logitech', 149.99, 'Переключатели Romer-G', 50),
+                                                                                      ('Механическая клавиатура', 2, 'Razer', 169.99, 'Green Switch', 30),
+                                                                                      ('Оптическая мышь', 3, 'SteelSeries', 79.99, '12,000 CPI, два сенсора', 40),
+                                                                                      ('Стрелочные наушники', 4, 'HyperX', 99.99, '7.1 Surround Sound', 25);
+
+
+
+
+Поиск клавиатур по бренду:
+SELECT * FROM productDetails WHERE id = 1 AND brand = 'Logitech';
+Количество разных клавиатур:
+SELECT COUNT(*) FROM productDetails WHERE id = 1;
+SELECT SUM(quantity) FROM ProductDetail WHERE id = 1;
